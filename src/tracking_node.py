@@ -17,6 +17,8 @@ def callbackA(message):
 
     global tracking_enabled
 
+    rover_cmd_t = RoverCommand()
+
     if (message.locomotion_mode == LocomotionMode.TRACKING.value) and (tracking_enabled == False):
         tracking_enabled = True
         rospy.loginfo("Tracking enabled!")
@@ -24,6 +26,20 @@ def callbackA(message):
     elif (message.locomotion_mode != LocomotionMode.TRACKING.value) and (tracking_enabled == True):
             tracking_enabled = False
             rospy.loginfo("Tracking disabled!")
+
+    if (tracking_enabled == False):
+        rover_cmd_t = message
+
+    else:
+        rover_cmd_t.connected = message.connected
+        rover_cmd_t.motors_enabled = message.motors_enabled
+        rover_cmd_t.locomotion_mode = message.locomotion_mode
+        #Provisional
+        rover_cmd_t.vel = 0
+        rover_cmd_t.steering = 0
+        
+    robot_pub.publish(rover_cmd_t)
+
 
 
 def callbackB(data):
@@ -69,6 +85,7 @@ def callbackB(data):
         #                 print("Middle!", width)
         #             elif midX>mid:
         #                 print("Right!", width)
+                          
         #             else:
         #                 print("Left!", width)
 
@@ -108,8 +125,8 @@ if __name__ == '__main__':
     joy_sub = rospy.Subscriber("/rover_command", RoverCommand, callbackA, queue_size=1)
     sub_cam = rospy.Subscriber("/pi_cam/image_raw", Image, callbackB, queue_size=1)
     
-    #rate = rospy.Rate(10)
+    rate = rospy.Rate(10)
 
-    #sub_robot = rospy.Subscriber("/motor_commands", MotorCommands, queue_size=1)
-
+    robot_pub = rospy.Publisher("/rover_command_t", RoverCommand, queue_size=1)
+    
     rospy.spin()
