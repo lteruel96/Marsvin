@@ -43,10 +43,14 @@ body {
     background-color: green;
     grid-row: 3;
 }
+.buttonB{
+    background-color: purple;
+    grid-row: 4;
+}
 
 .buttonStart{
     background-color: red;
-    grid-row: 4;
+    grid-row: 5;
     width: 50%;
     font-size: 12px;
 

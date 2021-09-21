@@ -5,6 +5,7 @@ from exomy.msg import RoverCommand
 from locomotion_modes import LocomotionMode
 import math
 
+
 # Define locomotion modes
 global locomotion_mode
 global motors_enabled
@@ -20,14 +21,15 @@ def callback(data):
 
     rover_cmd = RoverCommand()
 
-    # Function map for the Logitech F710 joystick
+    # Function re-map for new controller
     # Button on pad | function
     # --------------|----------------------
     # A             | Ackermann mode
     # X             | Point turn mode
     # Y             | Crabbing mode
+    # B             | Tracking mode
     # Left Stick    | Control speed and direction
-    # START Button  | Enable and disable motors
+    # START Button->R2 | Enable and disable motors
 
     # Reading out joystick data
     y = data.axes[1]
@@ -35,23 +37,23 @@ def callback(data):
 
     # Reading out button data to set locomotion mode
     # X Button
-    if (data.buttons[0] == 1):
+    if (data.buttons[3] == 1):
         locomotion_mode = LocomotionMode.POINT_TURN.value
     # A Button
-    if (data.buttons[1] == 1):
+    if (data.buttons[0] == 1):
         locomotion_mode = LocomotionMode.ACKERMANN.value
     # B Button
-    if (data.buttons[2] == 1):
-        pass
+    if (data.buttons[1] == 1):
+        locomotion_mode = LocomotionMode.TRACKING.value
     # Y Button
-    if (data.buttons[3] == 1):
+    if (data.buttons[4] == 1):
         locomotion_mode = LocomotionMode.CRABBING.value
 
     rover_cmd.locomotion_mode = locomotion_mode
 
     # Enable and disable motors
-    # START Button
-    if (data.buttons[9] == 1):
+    # START Button (9)
+    if (data.buttons[11] == 1):
         if motors_enabled is True:
             motors_enabled = False
             rospy.loginfo("Motors disabled!")

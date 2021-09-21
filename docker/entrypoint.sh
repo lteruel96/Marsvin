@@ -7,6 +7,7 @@ elif [[ $1 == "autostart" ]]
 then
 	source /opt/ros/melodic/setup.bash
 	cd /root/exomy_ws
+	chmod +x src/exomy/src/tracking_node.py
 	catkin_make
 	http-server src/exomy/gui -p 8000 &
 

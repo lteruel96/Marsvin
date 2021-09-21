@@ -16,7 +16,7 @@ class Rover():
     FL, FR, CL, CR, RL, RR = range(0, 6)
 
     # Defining locomotion modes
-    FAKE_ACKERMANN, ACKERMANN, POINT_TURN, CRABBING = range(0, 4)
+    FAKE_ACKERMANN, ACKERMANN, POINT_TURN, CRABBING, TRACKING = range(0, 5)
 
     def __init__(self):
         self.locomotion_mode = LocomotionMode.FAKE_ACKERMANN
