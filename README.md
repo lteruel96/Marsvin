@@ -1,5 +1,13 @@
-# ExoMy - Software Repository
-This repository contains the software to run Exomy. The [wiki](https://github.com/esa-prl/ExoMy/wiki) explains you how to use it.
+# Marsvin - Software Repository
+This repository contains the software of the Marsvin rover.
+
+* **Modified by:** Lucía Teruel Saldaña
+
+* **Master's Thesis:** "Study of the ExoMy rover"
+
+* **Master:** Automatic Control and Robotics (UPC)
+
+* **Based on:** [Exomy ESA's low-cost rover](https://github.com/esa-prl/ExoMy)
 
 ![ExoMy image](https://github.com/esa-prl/ExoMy/wiki/images/renderings/2020_02_25.JPG)
 
