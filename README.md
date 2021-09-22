@@ -3,7 +3,7 @@ This repository contains the software of the Marsvin rover.
 
 * **Modified by:** Lucía Teruel Saldaña
 
-* **Master's Thesis:** "Study of the ExoMy rover"
+* **Master's Thesis:** "Study of ESA’s ExoMy low-cost robot"
 
 * **Master:** Automatic Control and Robotics (UPC)
 
